@@ -1,0 +1,254 @@
+<?php ob_start() ; ?>
+<?php require 'C:\xampp\htdocs\ders\db.php' ?>
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>RL Admin</title>
+
+    <!-- Bootstrap core CSS-->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+      <a class="navbar-brand mr-1" href="../">ReadLearn</a>
+
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Navbar Search -->
+      <div class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+       <a class="nav-link" href="#">
+           <span>Çıkış</span>
+           <i class="fas fa-sign-out-alt"></i>
+       </a>
+       </div>
+</nav>
+
+<!---->
+      
+
+    <div id="wrapper">
+<!--headr bitiş-->
+     
+    
+    
+    
+    
+    
+    <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="index.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="kategori.php">
+            <span>Kategoriler</span></a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Pages</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">Login Screens:</h6>
+            <a class="dropdown-item" href="login.html">Login</a>
+            <a class="dropdown-item" href="register.html">Register</a>
+            <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
+            <div class="dropdown-divider"></div>
+          
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="ürünler.php">
+            <span>Ürünler</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="üyeler.php">
+            <span>Üyeler</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="yazarlar.php">
+            <span>Yazarlar</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="siparisler.php">
+            <span>Siparişler</span></a>
+        </li>
+        
+
+       
+      </ul>
+
+      <div id="content-wrapper">
+    <div class="container-fluid">
+        <h1>Welcome to Admin Page</h1>
+        <hr>
+
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Category Name</th>
+                    <th>Kategori İçerik Sayfası</th>
+                    <th>Add - Edit - Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            <?php
+        
+        if(isset($_POST['add_category'])){
+            $kategori_name= $_POST['kategori_name'];
+        
+
+
+            if($kategori_name  == "" || empty($kategori_name)){
+                echo "<div class='alert alert-danger' role='alert'>
+                Bu Alan Boş Bırakılamaz!
+              </div>";
+            }
+            else{
+                $sql_query = "INSERT INTO kategori(kategori_name) VALUE('$kategori_name')";
+                $add_new_kategori_query = mysqli_query($db,$sql_query);
+            }
+            echo "<div class='alert alert-success' role='alert'>
+            Başarılı Bir Şekilde Eklendi!
+          </div>";
+            } 
+            
+        ?>
+
+            <?php 
+            
+            
+            $sql_query="SELECT * FROM kategori";
+            $select_kategoriler=mysqli_query($db,$sql_query);
+                while($row= mysqli_fetch_assoc($select_kategoriler)){
+
+
+            
+            
+            ?>
+            <tr>
+                    <td><?php echo $row['kategori_id']; ?></td>
+                    <td><?php echo $row['kategori_name']; ?></td>
+                    <td><?php //echo $row['kategori_tag']; ?></td>
+
+                    <td>
+                        <div class='dropdown'>
+                            <button class='btn btn-primary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                                Actions
+                            </button>
+                            <div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
+                                <div class='dropdown-divider'></div>
+                                <a class='dropdown-item' data-toggle='modal' data-target='#add_modal'>Add</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+<?php } ?>
+               
+                </div>
+            </tbody>
+        </table>
+
+
+
+        <div id="add_modal" class="modal fade">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add New Category</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" method="post">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="kategori_name">
+                            </div>
+                            <!--
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="kategori_içerik_sayfası">
+                            </div>
+                -->
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-primary" name="add_category" value="Add Category">
+                            </div>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+                <!--delete-->
+     
+     <!--footer başlangıç-->
+      </div>
+        <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span class="lead">NO Copyright ReadLearn 2021</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="vendor/datatables/jquery.dataTables.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin.min.js"></script>
+
+    <!-- Demo scripts for this page-->
+    <script src="js/demo/datatables-demo.js"></script>
+    <script src="js/demo/chart-area-demo.js"></script>
+
+  </body>
+
+</html>

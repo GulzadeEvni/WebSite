@@ -1,0 +1,210 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    
+}
+html{
+    scroll-behavior: smooth;
+}
+
+.box{
+    width: 500px;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: rgb(35, 36, 37);
+    text-align: center;
+}
+
+.box h1{
+    color: rgb(35, 57, 129);
+    text-transform: uppercase;
+    font-weight: 500;
+    background: none;
+
+}
+.box input[type="text"],.box input[type="password"]{
+border:0;
+background: none;
+display: block;
+margin: 20px auto;
+text-align: center;
+border: 2px solid rgb(41, 76, 122);
+padding: 14px 10px;
+width: 200px;
+outline: none;
+color: white;
+border-radius: 25px;
+transition: 0.25s;
+
+}
+
+.box input[type="text"]:focus,.box input[type="password"]:focus{
+    width: 280px;
+    border-color:rgb(108, 138, 230);
+
+}
+.box input[type="submit"]{
+ border:0;
+background: none;
+display: block;
+margin: 20px auto;
+text-align: center;
+border: 2x solid rgb(34, 133, 158);
+padding: 14px 40px;
+outline: none;
+color: white;
+border-radius: 25px;
+transition: 0.25s;
+cursor: pointer;
+}
+.box input[type="submit"]:hover{
+    background:rgb(108, 138, 230);
+}
+
+.button {
+    background-color: #7e8486;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 30px;
+  }
+
+.içerik{
+    justify-content: center;
+    display: flex;
+}
+#text{
+    font-size: 30px;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+footer{
+    position: relative;
+    width: 100%;
+    padding: 40px 10vw;
+    padding-bottom: 80px;
+    background-color: rgb(26, 24, 24);
+    
+}
+.footer-content{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    
+}
+.kategori{
+    width: 200px;
+    list-style: none;
+    line-height: 30px;
+    font-size: 20px;
+    color: white;
+}
+.kategori .footer-link{
+    text-decoration: none;
+    text-transform: capitalize;
+}
+.footer-link:hover{
+    color: rgb(43, 113, 126);
+}
+.footer-title .info{
+    color: white;
+}
+.footer-social{
+    margin-top: 40px;
+    
+}
+.social-link{
+    color: white;
+    margin-left: 20px;
+    text-transform: capitalize;
+    text-decoration: none;
+}
+.footer-credit{
+    width: 100%;
+    padding:10px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+    color: white;
+    background-color: rgb(24, 24, 24);
+}
+
+
+.background-info {
+   
+    background-position: center center, center center;
+    background-size: cover, cover;
+    background-repeat: repeat, repeat
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
